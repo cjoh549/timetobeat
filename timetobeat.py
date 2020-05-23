@@ -1,7 +1,12 @@
-import requests, bs4
+import requests, bs4, difflib
+from collections import OrderedDict
+from operator import itemgetter
 
-def search_hltb(search_term):
-    """Searches howlongtobeat.com for a game and returns it's path if found or False on failure."""
+def search_hltb(search_term, fuzz=.95):
+    """
+    Searches howlongtobeat.com for a game and returns it's path if found or False on failure.
+    Defaults to a sorta fuzzy search, pass in a lower number to increase the fuzz
+    """
 
     uri = "https://howlongtobeat.com/search_results?page=1"
     data={'queryString':search_term,
@@ -28,13 +33,28 @@ def search_hltb(search_term):
     else:
         elms = search_results.find_all('a', 'text_white')
 
+        #return if we have an exact match
         if len(elms) == 0:
 	        return False
         
+        titles = {}
         for key in elms:
+            # figure out how close of a title match we are getting and drop it in a dictionary
+            titles[key.get('href')] = difflib.SequenceMatcher(None, key.text, search_term).ratio()
+
+            #return if we have an exact match
             if key.text == search_term:
                 return key.get('href')
 
+        # sort the dictionary of titles and grab the first one
+        otitles = OrderedDict(sorted(titles.items(), key=itemgetter(1), reverse = True))
+        first_key = list(otitles.keys())[0] 
+        
+        # if the first title is close, return it
+        if otitles[first_key] >= fuzz:
+            return first_key
+
+    # nothing was close enough, so return False
     return False
 
 
