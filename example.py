@@ -1,6 +1,6 @@
 from timetobeat import *
 
-search_term = "Animal Crossing: New Horizons"  
+search_term = "Mass Effect"  
 path = search_hltb(search_term)
 
 if path != False:
