@@ -44,16 +44,9 @@ def make_request(uri, data=""):
     try:
         res = requests.post(uri, data)
         res.raise_for_status()
-    except requests.exceptions.HTTPError as errh:
-        print ("Http Error:",errh)
-    except requests.exceptions.ConnectionError as errc:
-        print ("Error Connecting:",errc)
-    except requests.exceptions.Timeout as errt:
-        print ("Timeout Error:",errt)
+        return res
     except requests.exceptions.RequestException as err:
-        print ("Connection Error:",err)
-
-    return res
+        print ("Connection Error:",err)    
 
 
 def get_time_to_beat(path):
@@ -80,4 +73,4 @@ def get_time_to_beat(path):
         time = split_time[0].replace("½", ".5")
         times[key.contents[1].text] = time
 
-    return times    
+    return times
