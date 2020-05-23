@@ -51,7 +51,7 @@ def make_request(uri, data=""):
     except requests.exceptions.Timeout as errt:
         print ("Timeout Error:",errt)
     except requests.exceptions.RequestException as err:
-        print ("Connection Error:",err)
+        print ("OOps: Something Else",err)
 
     return res
 
