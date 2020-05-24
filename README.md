@@ -3,6 +3,7 @@
 Given a video game title, Time to Beat will search the (How Long to Beat)[https://howlongtobeat.com/] website and grab the length of time it takes to beat the game entered. If an exact match isn't found, it will search with a small amount of fuzziness, which is adjustable via code.
 
 **Basic Search**
+
 '''
 search_term = "Mass Effect"  
 path = search_hltb(search_term)
@@ -21,7 +22,7 @@ else:
 Output: {'Main Story': '17', 'Main + Extras': '28.5', 'Completionist': '44', 'All Styles': '27'}
 
 **Fuzzy Search**
-'''
+
 '''
 search_term = "Halo Combat Evolved" # Actual name is Halo: Combat Evolved
 path = search_hltb(search_term)
@@ -41,6 +42,7 @@ Results: {'Main Story': '10', 'Main + Extras': '11', 'Completionist': '13', 'All
 This is the correct information for Halo: Combat Evolved
 
 **Extra Fuzzy Search**
+
 '''
 search_term = "Halo"
 path = search_hltb(search_term, .80)
