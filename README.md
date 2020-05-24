@@ -39,6 +39,7 @@ else:
 ```
 
 Results: {'Main Story': '10', 'Main + Extras': '11', 'Completionist': '13', 'All Styles': '10.5'}
+
 This is the correct information for Halo: Combat Evolved
 
 **Extra Fuzzy Search**
@@ -58,4 +59,5 @@ else:
     print("Game title not found")
 ```
 Results: {'Main Story': '9', 'Main + Extras': '12', 'Completionist': '18', 'All Styles': '9.5'}
+
 This will return the information for Halo 3, which is the most likely match for that search
